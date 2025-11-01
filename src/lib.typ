@@ -94,6 +94,19 @@
   sunflower: "image/cover/sunflower.svg"
 )
 
+#let themes = (
+  abyss: (
+    background-color: rgb("#000000"), // 背景 / Background
+    text-color: rgb("#ffffff"), // 文字颜色 / Text
+    stroke-color: rgb("#4b5358"), // 描边颜色 / Stroke
+    fill-color: rgb("#1f2833"), // 填充颜色 / Fill
+
+    cover-image: "../themes/abyss/cover.svg", // 封面图片 / Cover image
+    preface-image: "../themes/abyss/preface.svg", // 前言图片 / Preface image
+    content-image: "../themes/abyss/content.svg", // 正文图片 / Content image
+  ),
+)
+
 // 封面页函数
 // Cover page function
 #let setup-cover(
@@ -103,11 +116,12 @@
   date-format: "[month repr:long] [day padding:zero], [year repr:full]",
   abstract: none,
   cover-style: "sunflower",
+  theme: "abyss",
 ) = {
   if abstract == none { // 如果没有摘要，则显示一个有大圆的封面。
     // If there is no abstract, display a cover with a large circle.
     page(
-      background: image(perface-styles.at(cover-style), width: 100%, height: 100%), // 背景图片 / Background image
+      background: image(themes.at(theme).cover-image, width: 100%, height: 100%), // 背景图片 / Background image
       align(
         center + horizon,       // 居中对齐 / Center alignment
         block(width: 90%)[      // 宽度90%的块 / Block with 90% width
@@ -152,7 +166,8 @@
 }
 
 #let setup-foreword(
-  preface: none
+  preface: none,
+  theme: "abyss",
 ) = {
   // 将前言显示为第二或三页。
   // Display preface as second or third page.
@@ -160,7 +175,7 @@
     set text(font: mono-family) // 设置前言字体 / Set preface font
     if preface != none {
       page(
-        background: image(perface-styles.sunflower, width: 100%, height: 100%), // 背景图片 / Background image
+        background: image(themes.at(theme).preface-image, width: 100%, height: 100%), // 背景图片 / Background image
         align(
           center + horizon,     // 居中对齐 / Center alignment
           block(width: 50%)[#preface] // 前言内容块 / Preface content block
@@ -344,6 +359,8 @@
   ),
 
   content-indent: 5pt, // 每一级内容的缩进 / Indentation for each level of content
+
+  theme: "abyss",
   
   // 作品的内容,自动传入
   // The content of your work.
@@ -353,10 +370,10 @@
   // Set document metadata.
   set document(title: title, author: author)
 
-  // 设置主题 - 白色背景和黑色文本
+  // 设置主题
   // Set theme - white background and black text
-  set page(fill: background-color) // 页面填充白色 / Page fill white
-  set text(fill: text-color, size: 12pt) // 文本填充黑色，大小12pt / Text fill black, size 12pt
+  set page(fill: themes.at(theme).background-color) // 页面填充颜色 / Page fill
+  set text(fill: themes.at(theme).text-color, size: 12pt) // 文本填充颜色，大小12pt / Text fill, size 12pt
 
   // 配置页面尺寸和边距。
   // Configure page size and margins.
@@ -374,6 +391,7 @@
     date-format: date-format,
     abstract: abstract,
     cover-style: cover-style,
+    theme: theme
   )
 
   // 使用主题配置段落属性。
@@ -410,6 +428,7 @@
   // Display preface as second or third page
   setup-foreword(
     preface: preface,
+    theme: theme
   )
 
   // 显示目录
@@ -421,7 +440,7 @@
   // 配置页码和页脚
   // Configure page numbers and footer
   set page(
-    background: image(content-styles.at(cover-style), width: 100%, height: 100%), // 背景图片 / Background image
+    background: image(themes.at(theme).content-image, width: 100%, height: 100%), // 背景图片 / Background image
     footer: context {           // 页脚上下文 / Footer context
       // 获取当前页码。
       // Get current page number.
@@ -606,4 +625,13 @@
       }
     }
   }
+}
+
+// 隐藏文字函数 / Hidden text function
+#let hidden-text(
+  body
+) = {
+  // 使用白色文字隐藏内容
+  // Hide content using white text
+  text(fill: background-color)[#body]
 }
