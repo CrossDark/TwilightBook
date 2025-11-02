@@ -73,27 +73,6 @@
 #let mono-family = latin-mono-family + cjk-mono-family
 #let title-font = latin-title-family + cjk-title-family
 
-// 设置封面风格
-// Set cover styles
-#let cover-styles = (
-  mixed: "",
-  sunflower: "image/cover/sunflower.svg"
-)
-
-// 设置前言风格
-// Set preface styles
-#let perface-styles = (
-  mixed: "",
-  sunflower: "image/cover/sunflower.svg"
-)
-
-// 设置正文风格
-// Set content styles
-#let content-styles = (
-  mixed: "",
-  sunflower: "image/cover/sunflower.svg"
-)
-
 #let themes = (
   abyss: (
     background-color: rgb("#000000"), // 背景 / Background
