@@ -16,7 +16,8 @@
     heading-numbering-format: "A.1.",
     body: include "appendix.typ",
   ),
-  bibliographys: bibliography("test.yml", title: "参考")
+  bibliographys: bibliography("test.yml", title: "参考"),
+  theme: "light"
 )
 
 = 产品介绍
@@ -30,6 +31,8 @@
 + 全系标准化,个体间一致性极高
 
 + 采用全光量子神经系统,计算能力强,稳定极性高
+
+#themes_(csv_path: "../themes/index.csv")
 
 == 注意事项
 
