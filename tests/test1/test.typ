@@ -24,6 +24,8 @@
 
 == 产品特点
 
+#index(theme: "abyss", setting: "bakground-color")
+
 + 全新研发,无历史遗留问题
 
 + 接口丰富,可编程,可扩展,可玩性高,模块化设计

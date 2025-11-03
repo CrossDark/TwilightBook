@@ -1,6 +1,8 @@
 // 本模板基于lib模板https://github.com/talal/ilm 使用DeepSeek修改而成
 // This template is based on the lib template https://github.com/talal/ilm and modified by DeepSeek
 
+#import "../themes/index.typ" : *
+
 // 用于弥补缺少 `std` 作用域的工作区。
 // Workaround for missing `std` scope in workspace.
 #let std-bibliography = bibliography
@@ -99,7 +101,7 @@
   for theme_array in csv_array { // 遍历每一行主题数据 / Iterate through each theme data row
     let settings = ("setting name":  "setting value") // 初始化设置字典 / Initialize settings dictionary
     for setting in theme_array { // 遍历每个设置 / Iterate through each setting
-      settings.insert(
+      settings.insert( // 插入设置到字典 / Insert setting into dictionary TODO
         keys.at(setting.index),   // 设置名称 / Setting name
         setting,                  // 设置值 / Setting value
       )
