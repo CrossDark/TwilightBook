@@ -43,6 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 从FlowerBook项目中迁移
 - 完善主题设置
+- 增加主题设置函数
 
 <!--
 以下是每个版本的目标URL：

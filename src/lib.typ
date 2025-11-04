@@ -90,29 +90,6 @@
   ),
 )
 
-// 设置主题 / setup theme
-#let themes_(
-  csv_path: "../themes/index.csv", // 加载原始主题数据 / Load raw theme data
-) = {
-  let csv_array = csv(csv_path) // 读取CSV文件 / Read CSV file
-  let keys = csv_array.at(0)         // 获取表头 / Get header row
-
-  let themes_dict = ("theme": "settings")          // 初始化主题字典 / Initialize themes dictionary
-  for theme_array in csv_array { // 遍历每一行主题数据 / Iterate through each theme data row
-    let settings = ("setting name":  "setting value") // 初始化设置字典 / Initialize settings dictionary
-    for setting in theme_array { // 遍历每个设置 / Iterate through each setting
-      settings.insert( // 插入设置到字典 / Insert setting into dictionary TODO
-        keys.at(setting.index),   // 设置名称 / Setting name
-        setting,                  // 设置值 / Setting value
-      )
-    }
-    themes_dict.insert(
-      theme_array.at(0),        // 主题名称 / Theme name
-      theme_array,               // 主题设置字典 / Theme data
-    )
-  }
-}
-
 // 处理主题数据 / Process theme data
 
 // 封面页函数
