@@ -11,16 +11,15 @@
 
 #let theme_settings = (
   abyss: (rgb("#000000"), rgb("#ffffff"), rgb("#4b5358"), rgb("#1f2833"), "../themes/abyss/cover.svg", "../themes/abyss/preface.svg", "../themes/abyss/content.svg"),
+  light: ("", "", "", "", "", "", ""),
 )
 
-#let index(
+#let themes(
   theme: "abyss", // 主题名称 / Theme name
   setting: "background-color", // 主题设置名称 / Theme setting name
 ) = {
   let isSetting(value) = value == setting // 判断
-  // 获取从`主题设置表头`主题设置对应的索引值 / Get the index value corresponding to the theme setting from the `theme_setting_heading`
-  theme_setting_heading.position(isSetting)
 
-  // 根据索引值从`主题设置`字典中选定主题的设置数组中获取对应的值 / Get the corresponding value from the selected theme's settings array in the `theme_settings` dictionary based on the index value
+  // 从`主题设置表头`中获取主题设置对应的索引值,并根据索引值从`主题设置`字典中选定主题的设置数组中获取对应的值 / Get the index value corresponding to the theme setting from the `theme setting header`, and use the index value to get the corresponding value from the setting array of the selected theme from the `theme settings` dictionary
   theme_settings.at(theme).at(theme_setting_heading.position(isSetting))
 }

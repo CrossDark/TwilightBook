@@ -1,7 +1,7 @@
 // 本模板基于lib模板https://github.com/talal/ilm 使用DeepSeek修改而成
 // This template is based on the lib template https://github.com/talal/ilm and modified by DeepSeek
 
-#import "../themes/index.typ" : *
+#import "../themes/index.typ" : * // 导入主题设置模块 / Import theme settings module
 
 // 用于弥补缺少 `std` 作用域的工作区。
 // Workaround for missing `std` scope in workspace.
@@ -67,29 +67,6 @@
 #let mono-family = latin-mono-family + cjk-mono-family
 #let title-font = latin-title-family + cjk-title-family
 
-#let themes = (
-  abyss: (
-    background-color: rgb("#000000"), // 背景 / Background
-    text-color: rgb("#ffffff"), // 文字颜色 / Text
-    stroke-color: rgb("#4b5358"), // 描边颜色 / Stroke
-    fill-color: rgb("#1f2833"), // 填充颜色 / Fill
-
-    cover-image: "../themes/abyss/cover.svg", // 封面图片 / Cover image
-    preface-image: "../themes/abyss/preface.svg", // 前言图片 / Preface image
-    content-image: "../themes/abyss/content.svg", // 正文图片 / Content image
-  ),
-  light: (
-    background-color: rgb("#ffffff"), // 背景 / Background
-    text-color: rgb("#000000"), // 文字颜色 / Text
-    stroke-color: rgb("#4b5358"), // 描边颜色 / Stroke
-    fill-color: rgb("#6c86a6"), // 填充颜色 / Fill
-
-    cover-image: "../themes/abyss/cover.svg", // 封面图片 / Cover image
-    preface-image: "../themes/abyss/preface.svg", // 前言图片 / Preface image
-    content-image: "../themes/abyss/content.svg", // 正文图片 / Content image
-  ),
-)
-
 // 处理主题数据 / Process theme data
 
 // 封面页函数
@@ -106,14 +83,14 @@
   if abstract == none { // 如果没有摘要，则显示一个有大圆的封面。
     // If there is no abstract, display a cover with a large circle.
     page(
-      background: image(themes.at(theme).cover-image, width: 100%, height: 100%), // 背景图片 / Background image
+      background: image(themes(theme: theme, setting: "background-color"), width: 100%, height: 100%), // 背景图片 / Background image
       align(
         center + horizon,       // 居中对齐 / Center alignment
         block(width: 90%)[      // 宽度90%的块 / Block with 90% width
           // 日期
           // Date
           #if date != none {
-            text(1.4em, fill: themes.at(theme).text-color, date.display(date-format)) // 显示日期 / Display date
+            text(1.4em, fill: themes(theme, "text-color"), date.display(date-format)) // 显示日期 / Display date
           } else {
             // 如果没有提供日期，则插入一个空行以保持布局一致。
             // If no date is provided, insert an empty line to maintain consistent layout.
@@ -122,12 +99,12 @@
 
           // 标题居中
           // Center title
-          #text(3.3em, fill: themes.at(theme).text-color, font: title-font)[*#title*] // 标题文本 / Title text
+          #text(3.3em, fill: themes(theme, "text-color"), font: title-font)[*#title*] // 标题文本 / Title text
 
           // 作者
           // Author
           #v(1em)               // 垂直间距 / Vertical space
-          #text(1.6em, fill: themes.at(theme).text-color, font: sans-family)[#author] // 作者文本 / Author text
+          #text(1.6em, fill: themes(theme, "text-color"), font: sans-family)[#author] // 作者文本 / Author text
         ],
       ),
     )
@@ -142,7 +119,7 @@
           // Abstract content
           // 默认行高是 0.65em。
           // Default line height is 0.65em.
-          #text(3.3em, fill: text-color)[*#title*] // 标题文本 / Title text
+          #text(3.3em, fill: themes(theme, "text-color"))[*#title*] // 标题文本 / Title text
           #par(leading: 0.78em, justify: true, linebreaks: "optimized", abstract) // 段落格式 / Paragraph formatting
         ],
       ),
@@ -160,9 +137,9 @@
     set text(font: mono-family) // 设置前言字体 / Set preface font
     if preface != none {
       page(
-        background: image(themes.at(theme).preface-image, width: 100%, height: 100%), // 背景图片 / Background image
+        background: image(themes(theme, "preface-color"), width: 100%, height: 100%), // 背景图片 / Background image
         align(
-          center + horizon,     // 居中对齐 / Center alignment
+          center + horizon, // 居中对齐 / Center alignment
           block(width: 50%)[#preface] // 前言内容块 / Preface content block
         )
       )
@@ -357,8 +334,8 @@
 
   // 设置主题
   // Set theme - white background and black text
-  set page(fill: themes.at(theme).background-color) // 页面填充颜色 / Page fill
-  set text(fill: themes.at(theme).text-color, size: 12pt) // 文本填充颜色，大小12pt / Text fill, size 12pt
+  set page(fill: themes(theme, "background-color")) // 页面填充颜色 / Page fill
+  set text(fill: themes(theme, "text-color"), size: 12pt) // 文本填充颜色，大小12pt / Text fill, size 12pt
 
   // 配置页面尺寸和边距。
   // Configure page size and margins.
@@ -425,7 +402,7 @@
   // 配置页码和页脚
   // Configure page numbers and footer
   set page(
-    background: image(themes.at(theme).content-image, width: 100%, height: 100%), // 背景图片 / Background image
+    background: image(themes(theme, "content-image"), width: 100%, height: 100%), // 背景图片 / Background image
     footer: context {           // 页脚上下文 / Footer context
       // 获取当前页码。
       // Get current page number.
@@ -455,7 +432,7 @@
         let gap = 1.75em           // 间距 / Gap
         // 显示章节名称
         // Display chapter name
-        let chapter = upper(text(size: 0.7em, fill: themes.at(theme).text-color, current.body)) // 章节名称大写 / Chapter name uppercase
+        let chapter = upper(text(size: 0.7em, fill: themes(theme, "text-color"), current.body)) // 章节名称大写 / Chapter name uppercase
         if current.numbering != none {
           align(aln)[#chapter]  // 对齐章节名称 / Align chapter name
           align(aln)[#i / #total]     // 对齐页码 / Align page number
@@ -479,7 +456,7 @@
 
   // 显示带内边距的代码块
   // Display code blocks with padding
-  show raw.where(block: true): block.with(inset: (x: 5pt), fill: themes.at(theme).fill-color)
+  show raw.where(block: true): block.with(inset: (x: 5pt), fill: themes(theme, "fill-color"))
 
   // 跨页拆分大表格。
   // Split large tables across pages.
@@ -488,17 +465,17 @@
     // 增加表格单元格的内边距
     // Increase table cell padding
     inset: 7pt,                 // 默认为 5pt / Default is 5pt
-    stroke: (0.5pt + themes.at(theme).stroke-color), // 描边 / Stroke
-    fill: themes.at(theme).background-color,     // 填充白色 / Fill white
+    stroke: (0.5pt + themes(theme, "stroke-color")), // 描边 / Stroke
+    fill: themes(theme, "background-color"),     // 填充 / Fill
   )
-  
+
   // 对表头行使用小型大写字母
   // Use small caps for table header rows.
   show table.cell.where(y: 0): smallcaps
   
   // 设置表格文本颜色为黑色
   // Set table text color to black
-  show table: set text(fill: themes.at(theme).text-color)
+  show table: set text(fill: themes(theme, "text-color"))
 
   // 将 `body` 用花括号包裹，使其拥有自己的上下文。这样 show/set 规则将仅适用于 body。
   // Wrap `body` in curly braces to give it its own context. This way show/set rules will only apply to body.
@@ -566,7 +543,7 @@
     if bibliographys != none {  // 如果有参考文献 / If bibliography exists
       pagebreak()               // 分页 / Page break
       set text(font: mono-family) // 设置附录字体 / Set appendix font
-      show std-bibliography: set text(0.85em, fill: themes.at(theme).text-color) // 设置参考文献文本样式 / Set bibliography text style
+      show std-bibliography: set text(0.85em, fill: themes(theme, "text-color")) // 设置参考文献文本样式 / Set bibliography text style
       // 对参考文献使用默认段落属性。
       // Use default paragraph properties for bibliography.
       show std-bibliography: set par(leading: 0.65em, justify: false, linebreaks: auto) // 设置参考文献段落属性 / Set bibliography paragraph properties
