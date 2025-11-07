@@ -210,7 +210,7 @@
 
 // 此函数获取整个文档作为其 `body`。
 // This function takes the entire document as its `body`.
-#let flower-book(
+#let twlight-book(
   // 您作品的标题。
   // The title of your work.
   title: [Your Title],

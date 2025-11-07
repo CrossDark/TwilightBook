@@ -1,12 +1,12 @@
-#import "@preview/flower-book:0.3.0" : *
+#import "../src/lib.typ" : *
 
-#show: flower-book.with(
-  title: [FlowerBook],
+#show: twlight-book.with(
+  title: [TwlightBook],
   author: "跨越晨昏",
   preface: [
     一个花卉主题模板
     ],
-  date: datetime(year: 2024, month: 03, day: 17),
+  date: datetime(year: 2025, month: 03, day: 17),
   figure-index: (enabled: true),
   table-index: (enabled: true),
   listing-index: (enabled: true),

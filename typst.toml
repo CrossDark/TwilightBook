@@ -26,7 +26,7 @@ exclude = [
 [template]
 path = "template"
 entrypoint = "main.typ"
-thumbnail = "src/image/cover/sunflower.webp"
+thumbnail = "template/main.jpg"
 
 # [tool.mytool]
 # foo = "bar"
