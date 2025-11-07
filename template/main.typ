@@ -1,4 +1,4 @@
-#import "../src/lib.typ" : *
+#import "@preview/twlight-book" : *
 
 #show: twlight-book.with(
   title: [TwlightBook],

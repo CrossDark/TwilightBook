@@ -1,6 +1,6 @@
 #import "/src/lib.typ" : *
 
-#show: flower-book.with(
+#show: twlight-book.with(
   title: [高端深渊人产品手册],
   author: "深渊",
   preface: [
