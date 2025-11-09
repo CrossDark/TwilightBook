@@ -331,7 +331,7 @@
   // The content of your work.
   body,
 ) = {
-  // 全局化主题设置
+  // 全局化主题设置 / Globalize theme settings
   theme_style = theme
 
   // 设置文档的元数据。
