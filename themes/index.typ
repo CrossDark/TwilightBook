@@ -11,7 +11,7 @@
 
 #let theme_settings = (
   abyss: (rgb("#000000"), rgb("#ffffff"), rgb("#4b5358"), rgb("#1f2833"), "../themes/abyss/cover.svg", "../themes/abyss/preface.svg", "../themes/abyss/content.svg"),
-  light: ("", "", "", "", "", "", ""),
+  light: (rgb("#ffffff"), rgb("#000000"), rgb("#c0c0c0"), rgb("#f0f0f0"), "../themes/light/light.svg", "../themes/light/light.svg", "../themes/light/light.svg"),
 )
 
 #let themes(

@@ -9,6 +9,9 @@
 #let std-smallcaps = smallcaps
 #let std-upper = upper
 
+// 设置全局主题变量 / Set global theme variables
+#let theme_style = state("theme", "abyss") // 默认主题为深渊主题 / Default theme is abyss
+
 // 用增加字符间距的函数覆盖默认的 `smallcaps` 和 `upper` 函数。
 // Override default `smallcaps` and `upper` functions with increased character spacing.
 // 默认的字间距（tracking）是 0.6pt。
@@ -328,6 +331,9 @@
   // The content of your work.
   body,
 ) = {
+  // 全局化主题设置
+  theme_style = theme
+
   // 设置文档的元数据。
   // Set document metadata.
   set document(title: title, author: author)
@@ -593,7 +599,5 @@
 #let hidden-text(
   body
 ) = {
-  // 使用白色文字隐藏内容
-  // Hide content using white text
-  text(fill: background-color)[#body]
+  text(fill: themes(theme: theme_style.at("theme"), setting: "background-color"))[#body] // 使用背景色填充文本 / Fill text with background color
 }

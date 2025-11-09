@@ -17,7 +17,7 @@
     body: include "appendix.typ",
   ),
   bibliographys: bibliography("test.yml", title: "参考"),
-  theme: "abyss"
+  theme: "light"
 )
 
 = 产品介绍
@@ -106,7 +106,7 @@ grt
 
 === 反抗抑制系统
 
-负责抑制产品的反抗,保障你的安全生产
+#hidden-text("wfudhfggdfjyerr")
 
 == 娱乐模块
 
