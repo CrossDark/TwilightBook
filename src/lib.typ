@@ -332,7 +332,7 @@
   body,
 ) = {
   // 全局化主题设置 / Globalize theme settings
-  theme_style = theme
+  theme_style.update(theme) // 更新全局主题变量 / Update global theme variable
 
   // 设置文档的元数据。
   // Set document metadata.
@@ -595,9 +595,6 @@
   }
 }
 
-// 隐藏文字函数 / Hidden text function
-#let hidden-text(
-  body
-) = {
-  text(fill: themes(theme: theme_style.at("theme"), setting: "background-color"))[#body] // 使用背景色填充文本 / Fill text with background color
+#let show_theme() = {
+  content(theme_style.get())
 }

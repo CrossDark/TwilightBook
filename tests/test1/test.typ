@@ -17,7 +17,7 @@
     body: include "appendix.typ",
   ),
   bibliographys: bibliography("test.yml", title: "参考"),
-  theme: "light"
+  theme: "abyss"
 )
 
 = 产品介绍
@@ -104,9 +104,9 @@ grt
 
 可以设定KPI,并自动考核,不达标则自动进行惩罚
 
-=== 反抗抑制系统
+#text(show_theme())
 
-#hidden-text("wfudhfggdfjyerr")
+=== 反抗抑制系统
 
 == 娱乐模块
 

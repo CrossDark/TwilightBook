@@ -45,6 +45,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 完善主题设置
 - 增加主题设置函数
 
+## [0.0.1] - 2025-11-10
+
+### 新增 Added
+
+<!-- Describe the feature set of the initial release here -->
+
+- 增加主题状态
+
 <!--
 以下是每个版本的目标URL：
 Below are the target URLs for each version
@@ -59,4 +67,4 @@ in comparison to the previous release
 
 [Unreleased]: https://github.com/CrossDark/TwilightBook/compare/latest...HEAD
 [0.0.0]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.0.0
-
+[0.0.1]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.0.1
