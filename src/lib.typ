@@ -326,6 +326,9 @@
   content-indent: 5pt, // 每一级内容的缩进 / Indentation for each level of content
 
   theme: "abyss",
+
+  depth: 1, // 深度 / depth
+  wrapper: none, // 包装器 / Wrapper
   
   // 作品的内容,自动传入
   // The content of your work.
