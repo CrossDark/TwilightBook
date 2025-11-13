@@ -596,5 +596,5 @@
 }
 
 /// #let show_theme() = {
-//  content(theme_style.get())
+//  content theme_style.get())
 // }
