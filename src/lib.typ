@@ -636,16 +636,10 @@
 
 // 将所有其他 `#show` 规则置于其前 / put all your other `#show` rules before
 show: wrapp-section.with(
-  depth: 1,  // or whatever heading level you want to apply it for testing
+  depth: 1,
   wrapper: (heading, content) => {
-    block(
-      stroke: (left: black),
-      inset: (left: 1em),
-    )[
-      // 在此处对标题或内容应用所需的所有格式设置 / apply all the formatting you want to the heading or the content here
-      #heading
-      #content
-    ]
+    heading
+    nest-block(depth: 2, content)
   }
 )
 

@@ -18,10 +18,6 @@
   ),
   bibliographys: bibliography("test.yml", title: "参考"),
   theme: "abyss",
-  wrapper: (heading, content) => {
-    heading
-    nest-block(depth: 2, content)
-  },
 )
 
 = 产品介绍
