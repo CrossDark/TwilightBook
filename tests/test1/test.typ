@@ -17,7 +17,11 @@
     body: include "appendix.typ",
   ),
   bibliographys: bibliography("test.yml", title: "参考"),
-  theme: "abyss"
+  theme: "abyss",
+  wrapper: (heading, content) => {
+    heading
+    nest-block(depth: 2, content)
+  },
 )
 
 = 产品介绍
@@ -103,8 +107,6 @@ grt
 === KPI自动考核系统
 
 可以设定KPI,并自动考核,不达标则自动进行惩罚
-
-#text(show_theme())
 
 === 反抗抑制系统
 

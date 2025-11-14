@@ -72,6 +72,71 @@
 
 // 处理主题数据 / Process theme data
 
+// 判断是否为标题的函数 / Check if function is a heading 
+#let is-heading(it) = {
+  it.func() == heading
+}
+
+#let wrapp-section(
+  body,
+  depth: 1,
+  wrapper: none,
+) = {
+  // The heading of the current section
+  let heading = none
+  // The content of the current section
+  let section = ()
+
+  for it in body.children {
+    let x = it.func();
+    
+    if (is-heading(it) and it.fields().at("depth") < depth) {
+      if heading != none {
+        // Complete the last section
+        wrapper(heading: heading, section: section.join())
+        heading = none
+        section = ()
+      }
+      it
+    } else if is-heading(it) and it.fields().at("depth") == depth {
+      if heading != none {
+        // Complete the last section
+        wrapper(heading, section.join())
+        heading = none
+        section = ()
+      }
+
+      heading = it
+    } else if heading != none {
+      // Continue the current section
+      section.push(it)
+    } else {
+      it // if not in any section (before the first heading of the appropriate depth)
+    }
+  }
+
+  // Complete the last section
+  if heading != none {
+    wrapper(heading, section.join())
+  }
+}
+
+// 嵌套块函数 / Nested block function
+#let nest-block(body, depth: 1) = {
+  wrapp-section(
+    depth: depth,
+    wrapper: (heading, content) => {
+      block(
+        stroke: (left: black),
+        inset: (left: 1em),
+      )[
+        #heading
+        #nest-block(depth: depth + 1, content)
+      ]
+    }
+  )[#body]
+}
+
 // 封面页函数
 // Cover page function
 #let setup-cover(
@@ -493,34 +558,6 @@
     // Configure heading numbering.
     set heading(numbering: "1.", hanging-indent: 3em) // 编号格式和悬挂缩进 / Numbering format and hanging indent
 
-    // 显示标题时添加缩进
-    // Add indentation when displaying headings
-    show heading: it => {
-      block(inset: (left: content-indent * it.level), it) // 根据标题级别缩进 / Indent based on heading level
-    }
-
-    // 显示段落和列表时根据对应的标题层级缩进
-    // Indent paragraphs based on corresponding heading level
-    show selector.or(par, enum, list, table, raw): it => context { // 查找标题和段落并传递给it变量
-      let h = query(selector(heading).before(here())).at(-1, default: none) // 获取前一个标题 / Get previous heading
-      if h == none {
-        return it               // 如果没有标题，返回原段落 / Return original paragraph if no heading
-      }
-      block(
-        inset: (left: content-indent * (h.level + 1)),
-        stroke: (left: 0.5pt), // 只在左侧绘制边框
-      )[#it]
-    }
-
-    // 显示一级标题时根据设置分页
-    // Possibly page break when displaying level 1 headings
-    show heading.where(level: 1): it => { 
-      if chapter-pagebreak {    // 在新页开始章节 / Start chapters on new page
-        pagebreak(weak: true)   // 弱分页 / Weak page break
-      }
-      it                        // 返回标题内容 / Return heading content
-    }
-    
     // 显示正文内容
     // Display main body content
     setup-content(
@@ -596,8 +633,20 @@
       }
     }
   }
-}
 
-/// #let show_theme() = {
-//  content theme_style.get())
-// }
+// 将所有其他 `#show` 规则置于其前 / put all your other `#show` rules before
+show: wrapp-section.with(
+  depth: 1,  // or whatever heading level you want to apply it for testing
+  wrapper: (heading, content) => {
+    block(
+      stroke: (left: black),
+      inset: (left: 1em),
+    )[
+      // 在此处对标题或内容应用所需的所有格式设置 / apply all the formatting you want to the heading or the content here
+      #heading
+      #content
+    ]
+  }
+)
+
+}
