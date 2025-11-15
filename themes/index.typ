@@ -9,6 +9,16 @@
     "content-image" // 主题图片路径 / Theme image paths
 )
 
+#let settings_csv = csv("index.csv") // 读取主题设置表格 / Read theme setting table
+
+#let settings_dict = ( // 主题设置字典 / Theme setting dictionary
+  thene_name: 1,
+)
+
+#for (index, value) in settings_csv.enumerate() {
+  settings_dict.insert(value.at(0), index)    
+}
+
 #let theme_settings = (
   abyss: (rgb("#000000"), rgb("#ffffff"), rgb("#4b5358"), rgb("#1f2833"), "../themes/abyss/cover.svg", "../themes/abyss/preface.svg", "../themes/abyss/content.svg"),
   light: (rgb("#ffffff"), rgb("#000000"), rgb("#c0c0c0"), rgb("#f0f0f0"), "../themes/light/light.svg", "../themes/light/light.svg", "../themes/light/light.svg"),
@@ -22,4 +32,12 @@
 
   // 从`主题设置表头`中获取主题设置对应的索引值,并根据索引值从`主题设置`字典中选定主题的设置数组中获取对应的值 / Get the index value corresponding to the theme setting from the `theme setting header`, and use the index value to get the corresponding value from the setting array of the selected theme from the `theme settings` dictionary
   theme_settings.at(theme).at(theme_setting_heading.position(isSetting))
+}
+
+#let csv_themes(
+  theme: "abyss", // 主题名称 / Theme name
+  setting: "background-color", // 主题设置名称 / Theme setting name
+) = {
+  let theme_heading = settings_csv.at(1) // csv第二行为`主题设置表头` / The second row of the csv is the `theme setting header`
+
 }
