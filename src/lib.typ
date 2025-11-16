@@ -634,13 +634,6 @@
     }
   }
 
-// 将所有其他 `#show` 规则置于其前 / put all your other `#show` rules before
-show: wrapp-section.with(
-  depth: 1,
-  wrapper: (heading, content) => {
-    heading
-    nest-block(depth: 2, content)
-  }
-)
+  // 将所有其他 `#show` 规则置于其前 / put all your other `#show` rules before
 
 }

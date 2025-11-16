@@ -1,3 +1,3 @@
 #import "../../themes/index.typ" : *
 
-#csv_themes()
+#text(fill: csv_themes(theme: "abyss", setting: "text-color"))[gsfr]

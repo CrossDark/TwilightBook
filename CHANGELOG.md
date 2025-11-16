@@ -20,11 +20,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 新增 Added
 
-- [ ] 增加深渊主题
+- [ ] 增加花卉主题
 
 ### 更改 Changed
 
-- [ ] 拆分floeer-book函数为一个主函数和许多小函数,小函数内放置各个部分/功能的具体实现代码,主函数内调用各个小函数并执行全局性代码
+- [ ] 拆分主函数为一个主函数和许多小函数,小函数内放置各个部分/功能的具体实现代码,主函数内调用各个小函数并执行全局性代码
 - [ ] 完善测试流程
 
 ### 弃用 Deprecated
@@ -51,6 +51,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- Describe the feature set of the initial release here -->
 
+## [0.0.2] - 2025-11-16
+
+### 更改 Changed
+
+主题设置改为csv
+
 - 增加主题状态
 
 <!--
@@ -68,3 +74,4 @@ in comparison to the previous release
 [Unreleased]: https://github.com/CrossDark/TwilightBook/compare/latest...HEAD
 [0.0.0]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.0.0
 [0.0.1]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.0.1
+[0.0.2]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.0.2
