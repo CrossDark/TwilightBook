@@ -1,6 +1,7 @@
 #import "/src/book.typ" : *
 
-#show: wrapp-section.with(
+#show: book.with(
+  theme: "abyss",
   depth: 1,
   wrapper: (heading, content) => {
     heading
@@ -16,6 +17,10 @@
 some
 text _and_ 
 more
+
+wef
+
+wef
 
 === heading 3 - a
 
@@ -46,6 +51,10 @@ test
 = heading 1 - c
 
 == heading 2 - c
+
+some
+
+=== heading 3 - b
 
 some
 text _and_ 

@@ -25,9 +25,9 @@
 
 // 主函数 / Wrapper function
 #let wrapp-section(
-  body,
-  depth: 1,
-  wrapper: none,
+  body, // The body content / 主体内容
+  depth: 1, // The heading depth to wrap / 要包装的标题深度
+  wrapper: none, // The wrapper function / 包装函数
 ) = {
   // The heading of the current section / 当前部分的标题
   let heading = none
@@ -86,8 +86,16 @@
 // Main function / 主函数
 #let book(
   body,
-  theme: "light",
+  title: "TwlightBook", // 文件名 / File name
+  author: "CrossDark", // 作者 / Author
+  theme: "abyss", // 主题名称 / Theme name
+  depth: 1, // 目录深度 / Table of contents depth
+  wrapper: none, // 
+  paper-size: "a4", // 纸张尺寸 / Paper size
+  text-size: 12pt, // 文字大小 / Text size
+  hanging-indent: 3em, // 悬挂缩进 / Hanging indent
 ) = {
+  // Load theme settings / 加载主题设置
   let background-color = themes(theme: theme, setting: "background-color")
   let text-color = themes(theme: theme, setting: "text-color")
   let stroke-color = themes(theme: theme, setting: "stroke-color")
@@ -97,10 +105,45 @@
   let content-image = themes(theme: theme, setting: "content-image")
 
   // Apply theme settings to the document / 将主题设置应用于文档
-  set page(
-    background: background-color,
-    text: text-color,
+  set document(title: title, author: author) // 设置文档元数据 / Set document metadata
+  
+  set page( // 页面设置 / Page settings
+    fill: background-color, // 页面背景颜色 / Page background color
+    paper: paper-size, // 纸张尺寸 / Paper size
+    margin: (bottom: 1.75cm, top: 2.25cm), // 底部和顶部边距 / Bottom and top margins
   )
 
-  body
+  set text( // 文字设置 / Text settings
+    fill: text-color, // 文字颜色 / Text color
+    size: text-size, // 文字大小 / Text size
+  )
+
+  // 表格设置
+  show table: set text(fill: text-color) // 设置表格文字颜色 / Set table text color
+
+  show table.cell.where(y: 0): smallcaps  // 对表头行使用小型大写字母 / Use small caps for table header rows.
+
+  set table(
+    inset: 7pt, // 增加表格单元格的内边距 / Increase table cell padding
+    stroke: (0.5pt + themes(theme: theme, setting: "stroke-color")), // 描边 / Stroke
+    fill: themes(theme: theme, setting: "background-color"),     // 填充 / Fill
+  )
+  // 表格设置结束
+
+  // 正文部分 / Body part
+  {
+    set page(
+      background: image(content-image, width: 100%, height: 100%)  // 背景图片 / Background image
+    )
+    set heading(numbering: "1.", hanging-indent: hanging-indent) // 编号格式和悬挂缩进 / Numbering format and hanging indent
+
+    wrapp-section( // 使用wrapp-section递归包装正文 / Wrap the body with wrapp-section
+    body,
+    depth: 1,
+    wrapper: (heading, content) => {
+      heading
+      nest-block(depth: 2, content)
+    }
+    )
+  }
 }
