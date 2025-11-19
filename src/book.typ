@@ -34,29 +34,27 @@
   // The content of the current section / 当前部分的内容
   let section = ()
 
-  for it in body.children {
-    let x = it.func();
+  for it in body.children { // Iterate through each child element in the body / 遍历正文中的每个子元素
+    let x = it.func(); // Get the function name of the element / 获取元素的函数名称
     
-    if (is-heading(it) and it.fields().at("depth") < depth) {
-      if heading != none {
-        // Complete the last section
-        wrapper(heading: heading, section: section.join())
-        heading = none
-        section = ()
+    if (is-heading(it) and it.fields().at("depth") < depth) { // If it's a heading with depth less than the specified depth / 如果是深度小于指定深度的标题
+      if heading != none { // 如果标题不为空 / if heading is not none
+        wrapper(heading: heading, section: section.join()) // 递归包装当前部分 / Recursively wrap the current section
+        heading = none // Reset heading / 重置标题
+        section = () // Reset section / 重置章节
       }
       it
-    } else if is-heading(it) and it.fields().at("depth") == depth {
-      if heading != none {
+    } else if is-heading(it) and it.fields().at("depth") == depth { // If it's a heading with the specified depth / 如果是指定深度的标题
+      if heading != none { // 如果标题不为空 / if heading is not none
         // Complete the last section
-        wrapper(heading, section.join())
-        heading = none
-        section = ()
+        wrapper(heading, section.join()) // 递归包装当前部分 / Recursively wrap the current section
+        heading = none // Reset heading / 重置标题
+        section = () // Reset section / 重置章节
       }
-
       heading = it
     } else if heading != none {
       // Continue the current section
-      section.push(it)
+      section.push(it) // Add the element to the current section / 将元素添加到当前部分
     } else {
       it // if not in any section (before the first heading of the appropriate depth) / 如果不在任何部分内（在适当深度的第一个标题之前)
     }
@@ -68,13 +66,13 @@
   }
 }
 
-#let nest-block(body, depth: 1) = {
+#let nest-block(body, depth: 1, stroke-color: white, inset: 1em) = {
   wrapp-section(
     depth: depth,
     wrapper: (heading, content) => {
       block(
-        stroke: (left: black),
-        inset: (left: 1em),
+        stroke: (left: stroke-color),
+        inset: (left: inset),
       )[
         #heading
         #nest-block(depth: depth + 1, content)
@@ -142,7 +140,7 @@
     depth: 1,
     wrapper: (heading, content) => {
       heading
-      nest-block(depth: 2, content)
+      nest-block(depth: 2, content, stroke-color: stroke-color, inset: 1em)
     }
     )
   }
