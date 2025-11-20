@@ -57,7 +57,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 主题设置改为csv
 
-- 增加主题状态
+## [0.1.0] - 2025-11-16
+
+### 更改 Changed
+
+- 文本块改为递归缩进
+
+### 新增 Added
+
+- 增加左侧嵌套提示线
 
 <!--
 以下是每个版本的目标URL：
@@ -75,3 +83,4 @@ in comparison to the previous release
 [0.0.0]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.0.0
 [0.0.1]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.0.1
 [0.0.2]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.0.2
+[0.1.0]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.1.0

@@ -75,7 +75,7 @@
         inset: (left: inset),
       )[
         #heading
-        #nest-block(depth: depth + 1, content)
+        #nest-block(depth: depth + 1, content, stroke-color: stroke-color, inset: inset)
       ]
     }
   )[#body]
@@ -136,12 +136,12 @@
     set heading(numbering: "1.", hanging-indent: hanging-indent) // 编号格式和悬挂缩进 / Numbering format and hanging indent
 
     wrapp-section( // 使用wrapp-section递归包装正文 / Wrap the body with wrapp-section
-    body,
-    depth: 1,
-    wrapper: (heading, content) => {
-      heading
-      nest-block(depth: 2, content, stroke-color: stroke-color, inset: 1em)
-    }
+      body,
+      depth: 1,
+      wrapper: (heading, content) => {
+        heading
+        nest-block(depth: 2, content, stroke-color: stroke-color, inset: 1em)
+      }
     )
   }
 }
