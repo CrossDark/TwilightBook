@@ -92,6 +92,7 @@
   paper-size: "a4", // 纸张尺寸 / Paper size
   text-size: 12pt, // 文字大小 / Text size
   hanging-indent: 3em, // 悬挂缩进 / Hanging indent
+  inset: 1em, // 内容边距 / Content inset
 ) = {
   // Load theme settings / 加载主题设置
   let background-color = themes(theme: theme, setting: "background-color")
@@ -140,7 +141,7 @@
       depth: 1,
       wrapper: (heading, content) => {
         heading
-        nest-block(depth: 2, content, stroke-color: stroke-color, inset: 1em)
+        nest-block(depth: 2, content, stroke-color: stroke-color, inset: inset)
       }
     )
   }
