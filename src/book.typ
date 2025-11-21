@@ -1,5 +1,7 @@
 #import "../themes/index.typ" : * // 导入主题设置模块 / Import theme settings module
 
+#import "models.typ" : * // 导入模块 / Import models module
+
 // A utility function to check if an element is a heading / 判断元素是否为标题
 #let is-heading(it) = {
   it.func() == heading
@@ -93,6 +95,9 @@
   text-size: 12pt, // 文字大小 / Text size
   hanging-indent: 3em, // 悬挂缩进 / Hanging indent
   inset: 1em, // 内容边距 / Content inset
+  date: none, // 日期 / Date
+  date-format: "[year repr:full]-[month padding:zero]-[day padding:zero]", // 日期格式 / Date format
+  abstract: none, // 摘要 /
 ) = {
   // Load theme settings / 加载主题设置
   let background-color = themes(theme: theme, setting: "background-color")
@@ -128,6 +133,20 @@
     fill: themes(theme: theme, setting: "background-color"),     // 填充 / Fill
   )
   // 表格设置结束
+  
+  // Cover part / 封面部分
+  {
+    setup-cover(
+    title: title,
+    author: author,
+    date: date,
+    date-format: date-format,
+    abstract: abstract,
+    cover-style: theme,
+    theme: theme
+  )
+  }
+  // 封面部分结束 / End of cover part
 
   // 正文部分 / Body part
   {
