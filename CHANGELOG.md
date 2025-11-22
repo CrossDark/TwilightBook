@@ -67,6 +67,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 增加左侧嵌套提示线
 
+## [0.1.1] - 2025-11-22
+
+### 新增 Added
+
+- 增加前言页
+
 <!--
 以下是每个版本的目标URL：
 Below are the target URLs for each version

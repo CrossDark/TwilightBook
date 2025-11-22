@@ -86,8 +86,8 @@
 // Main function / 主函数
 #let book(
   body,
-  title: "TwlightBook", // 文件名 / File name
-  author: "CrossDark", // 作者 / Author
+  title: "晨昏之书", // 文件名 / File name
+  author: "跨越晨昏", // 作者 / Author
   theme: "abyss", // 主题名称 / Theme name
   depth: 1, // 目录深度 / Table of contents depth
   wrapper: none, // 
@@ -97,7 +97,8 @@
   inset: 1em, // 内容边距 / Content inset
   date: none, // 日期 / Date
   date-format: "[year repr:full]-[month padding:zero]-[day padding:zero]", // 日期格式 / Date format
-  abstract: none, // 摘要 /
+  abstract: none, // 摘要 / Abstract
+  preface: none, // 前言 / Foreword
 ) = {
   // Load theme settings / 加载主题设置
   let background-color = themes(theme: theme, setting: "background-color")
@@ -147,6 +148,15 @@
   )
   }
   // 封面部分结束 / End of cover part
+
+  // Foreword part / 前言部分
+  {
+    setup-foreword(
+      preface: preface,
+      theme: theme
+    )
+  }
+  // 前言部分结束 / End of foreword part
 
   // 正文部分 / Body part
   {

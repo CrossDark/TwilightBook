@@ -1,8 +1,10 @@
 #import "../themes/index.typ" : * // 导入主题设置模块 / Import theme settings module
 
-#let setup-cover(
-  title: [Your Title],
-  author: "Author",
+#import "fonts.typ" : * // 导入字体模块 / Import fonts module
+
+#let setup-cover( // 封面设置函数 / Cover setup function
+  title: [晨昏之书],
+  author: "跨越晨昏",
   date: none,
   date-format: "[month repr:long] [day padding:zero], [year repr:full]",
   abstract: none,
@@ -44,4 +46,24 @@
       ],
     ),
   )
+}
+
+#let setup-foreword( // 前言设置函数 / Foreword setup function
+  preface: none,
+  theme: "abyss",
+) = {
+  // 将前言显示为第二或三页。
+  // Display preface as second or third page.
+  {
+    set text(font: mono-family) // 设置前言字体 / Set preface font
+    if preface != none {
+      page(
+        background: image(themes(theme: theme, setting: "preface-image"), width: 100%, height: 100%), // 背景图片 / Background image
+        align(
+          center + horizon, // 居中对齐 / Center alignment
+          block(width: 50%)[#preface] // 前言内容块 / Preface content block
+        )
+      )
+    }
+  }
 }
