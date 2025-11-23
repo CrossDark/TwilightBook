@@ -1,6 +1,26 @@
+#import "@preview/one-liner:0.2.0": fit-to-width // 导入适应宽度模块 / Import fit-to-width module
+
 #import "../themes/index.typ" : * // 导入主题设置模块 / Import theme settings module
 
 #import "fonts.typ" : * // 导入字体模块 / Import fonts module
+
+#let adaptive-title(body) = context { // 自适应标题大小函数 / Adaptive title size function
+  let height = 4cm // box size
+  let width = 6cm  // box size
+  let size = 50pt  // maximum text size
+
+  while measure(text(size: size, weight: 700, body), width: width).height > height {
+    size -= 1pt
+  }
+  
+  box(
+    width: width,
+    height: height,
+    fill: green, // for visualization only
+    text(size: size, weight: 700, body)
+  )
+}
+
 
 #let setup-cover( // 封面设置函数 / Cover setup function
   title: [晨昏之书],
@@ -28,7 +48,13 @@
         // 日期
         // Date
         #if date != none {
-          text(1.4em, fill: themes(theme: theme, setting: "text-color"), date.display(date-format)) // 显示日期 / Display date
+          block(
+            height: 1cm,
+            width: 10cm,
+            inset: 8pt,
+            radius: 4pt,
+            align(horizon + center,fit-to-width(date.display(date-format)))
+          ) // 摘要块 / Abstract block
         } else {
           // 如果没有提供日期，则插入一个空行以保持布局一致。
           // If no date is provided, insert an empty line to maintain consistent layout.
@@ -37,12 +63,24 @@
 
         // 标题居中
         // Center title
-        #text(3.3em, fill: themes(theme: theme, setting: "text-color"), font: title-font)[*#title*] // 标题文本 / Title text
+        #block(
+          height: 3cm,
+          width: 10cm,
+          inset: 8pt,
+          radius: 4pt,
+          align(horizon + center, fit-to-width(title))
+        ) // 摘要块 / Abstract block
 
         // 作者
         // Author
         #v(1em)               // 垂直间距 / Vertical space
-        #text(1.6em, fill: themes(theme: theme, setting: "text-color"), font: sans-family)[#author] // 作者文本 / Author text
+        #block(
+          height: 1cm,
+          width: 10cm,
+          inset: 8pt,
+          radius: 4pt,
+          align(horizon + center,fit-to-width(author))
+        ) // 摘要块 / Abstract block
       ],
     ),
   )
@@ -64,6 +102,17 @@
           block(width: 50%)[#preface] // 前言内容块 / Preface content block
         )
       )
+    }
+  }
+}
+
+#let setup-table-of-contents(
+  table-of-contents: none,
+) = {
+  {
+    set text(font: mono-family) // 设置目录字体 / Set contents font
+    if table-of-contents != none {
+      table-of-contents         // 显示目录 / Display table of contents
     }
   }
 }

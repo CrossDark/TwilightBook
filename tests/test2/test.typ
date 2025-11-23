@@ -1,6 +1,7 @@
 #import "/src/book.typ" : *
 
 #show: book.with(
+  title: [ergrthrthhrtrt],
   theme: "abyss",
   depth: 1,
   wrapper: (heading, content) => {
@@ -8,7 +9,8 @@
     nest-block(depth: 2, content)
   },
   inset: 1em,
-  preface: "ewf"
+  preface: "ewf",
+  date: datetime(year: 2024, month: 02, day: 3)
 )
 
 
@@ -29,6 +31,11 @@ wef
 === heading 3 - a
 
 stuffewf
+
+wgreergerg
+wgr外国人
+个二维公然侮辱个外国人
+个吻文哥给我
 
 efw
 
@@ -70,3 +77,7 @@ stuff
 
 == heading 2 - d
 test
+
+= 标题内容
+
+ergerg

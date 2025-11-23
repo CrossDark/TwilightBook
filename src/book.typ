@@ -99,6 +99,7 @@
   date-format: "[year repr:full]-[month padding:zero]-[day padding:zero]", // 日期格式 / Date format
   abstract: none, // 摘要 / Abstract
   preface: none, // 前言 / Foreword
+  table-of-contents: outline(title: "目录"), // 目录设置 / Table of contents settings
 ) = {
   // Load theme settings / 加载主题设置
   let background-color = themes(theme: theme, setting: "background-color")
@@ -121,6 +122,8 @@
   set text( // 文字设置 / Text settings
     fill: text-color, // 文字颜色 / Text color
     size: text-size, // 文字大小 / Text size
+    lang: "zh",                 // 语言设置为中文 / Language set to Chinese
+    font: serif-family          // 使用衬线字体家族 / Use serif font family
   )
 
   // 表格设置
@@ -157,13 +160,40 @@
     )
   }
   // 前言部分结束 / End of foreword part
+  
+  // 目录部分 / Table of contents part
+  {
+    setup-table-of-contents(
+      table-of-contents: table-of-contents
+    )
+  }
+  // 目录部分结束 / End of table of contents part
 
   // 正文部分 / Body part
   {
     set page(
       background: image(content-image, width: 100%, height: 100%)  // 背景图片 / Background image
     )
+
     set heading(numbering: "1.", hanging-indent: hanging-indent) // 编号格式和悬挂缩进 / Numbering format and hanging indent
+
+    // 显示标题时设置标题字体 / Set title font when displaying headings
+    show heading: x => {
+      set text(font: title-font)  // 使用标题字体 / Use title font
+      x                           // 返回内容 / Return content
+    }
+
+    // 显示粗体,上下划线,时设置无衬线字体 / Set sans-serif font when displaying strong text
+    show selector.or(strong, emph, underline, strike, overline): x => {
+      set text(font: sans-family) // 使用无衬线字体家族 / Use sans-serif font family
+      x                           // 返回内容 / Return content
+    }
+
+    // 显示原始代码时设置等宽字体 / Set monospace font when displaying raw code
+    show raw: x => {
+      set text(font: mono-family) // 使用等宽字体家族 / Use monospace font family
+      x                           // 返回内容 / Return content
+    }
 
     wrapp-section( // 使用wrapp-section递归包装正文 / Wrap the body with wrapp-section
       body,
