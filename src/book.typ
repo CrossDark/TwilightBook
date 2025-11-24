@@ -7,24 +7,6 @@
   it.func() == heading
 }
 
-/// A show rule that wrap everything between two headings of the same level / / 包装两个相同级别标题之间的所有内容
-///
-/// Usage: 
-/// ```
-/// #show: wrapp-section.with(
-///   depth: 1, // optional
-///   wrapper: (heading: none, section: none) => {
-///    rect[
-///      heading: #box[#rect[#heading]]
-///      
-///      section: #box[#rect[#section]]
-///    ]
-///  }
-/// )
-/// ```
-///
-/// Note: `#set` rules (like `#set text(lang: "fr")`) must be declared before calling `#show: wrapp-section` /  注意: `#set` 规则（如 `#set text(lang: "fr")`）必须在调用 `#show: wrapp-section` 之前声明
-
 // 主函数 / Wrapper function
 #let wrapp-section(
   body, // The body content / 主体内容
@@ -68,16 +50,16 @@
   }
 }
 
-#let nest-block(body, depth: 1, stroke-color: white, inset: 1em) = {
+#let nest-block(body, depth: 1, line-color: white, inset: 1em) = {
   wrapp-section(
     depth: depth,
     wrapper: (heading, content) => {
       block(
-        stroke: (left: stroke-color),
+        stroke: (left: line-color),
         inset: (left: inset),
       )[
         #heading
-        #nest-block(depth: depth + 1, content, stroke-color: stroke-color, inset: inset)
+        #nest-block(depth: depth + 1, content, line-color: line-color, inset: inset)
       ]
     }
   )[#body]
@@ -100,12 +82,18 @@
   abstract: none, // 摘要 / Abstract
   preface: none, // 前言 / Foreword
   table-of-contents: outline(title: "目录"), // 目录设置 / Table of contents settings
+  appendix: ( // 附录设置 / Appendix settings
+    enabled: false,
+    title: "附录",
+    body: (),
+  ),
 ) = {
   // Load theme settings / 加载主题设置
   let background-color = themes(theme: theme, setting: "background-color")
   let text-color = themes(theme: theme, setting: "text-color")
   let stroke-color = themes(theme: theme, setting: "stroke-color")
   let fill-color = themes(theme: theme, setting: "fill-color")
+  let line-color = themes(theme: theme, setting: "line-color")
   let cover-image = themes(theme: theme, setting: "cover-image")
   let preface-image = themes(theme: theme, setting: "preface-image")
   let content-image = themes(theme: theme, setting: "content-image")
@@ -126,7 +114,7 @@
     font: serif-family          // 使用衬线字体家族 / Use serif font family
   )
 
-  // 表格设置
+  // 表格开始
   show table: set text(fill: text-color) // 设置表格文字颜色 / Set table text color
 
   show table.cell.where(y: 0): smallcaps  // 对表头行使用小型大写字母 / Use small caps for table header rows.
@@ -135,11 +123,9 @@
     inset: 7pt, // 增加表格单元格的内边距 / Increase table cell padding
     stroke: (0.5pt + themes(theme: theme, setting: "stroke-color")), // 描边 / Stroke
     fill: themes(theme: theme, setting: "background-color"),     // 填充 / Fill
-  )
-  // 表格设置结束
+  ) // 表格结束
   
-  // Cover part / 封面部分
-  {
+  { // 封面部分 / Cover part
     setup-cover(
     title: title,
     author: author,
@@ -149,8 +135,7 @@
     cover-style: theme,
     theme: theme
   )
-  }
-  // 封面部分结束 / End of cover part
+  } // 封面结束 / End of cover part
 
   // Foreword part / 前言部分
   {
@@ -161,16 +146,14 @@
   }
   // 前言部分结束 / End of foreword part
   
-  // 目录部分 / Table of contents part
+  // 目录开始 / Table of contents part
   {
     setup-table-of-contents(
       table-of-contents: table-of-contents
     )
-  }
-  // 目录部分结束 / End of table of contents part
+  } // 目录结束 / End of table of contents part
 
-  // 正文部分 / Body part
-  {
+  { // 正文开始 / Start of body part
     set page(
       background: image(content-image, width: 100%, height: 100%)  // 背景图片 / Background image
     )
@@ -179,7 +162,7 @@
 
     // 显示标题时设置标题字体 / Set title font when displaying headings
     show heading: x => {
-      set text(font: title-font)  // 使用标题字体 / Use title font
+      set text(font: art-font)  // 使用标题字体 / Use title font
       x                           // 返回内容 / Return content
     }
 
@@ -200,8 +183,24 @@
       depth: 1,
       wrapper: (heading, content) => {
         heading
-        nest-block(depth: 2, content, stroke-color: stroke-color, inset: inset)
+        nest-block(depth: 2, content, line-color: line-color, inset: inset)
       }
     )
-  }
+  } // 正文结束 / End of body part
+
+  { // 附录开始 / Appendix part
+    if appendix.enabled {       // 如果启用附录 / If appendix is enabled
+      pagebreak()               // 分页 / Page break
+      heading(level: 1)[#appendix.at("title", default: "附录")] // 附录标题 / Appendix title
+
+      // 重制标题计数器
+      // Reset heading counter
+      counter(heading).update(0) // 更新计数器为0 / Update counter to 0
+      // 对于附录中的标题前缀，标准约定是 A.1.1.
+      // For heading prefixes in appendix, standard convention is A.1.1.
+      set heading(numbering: "A.1.") // 设置附录标题编号 / Set appendix heading numbering
+
+      appendix.body             // 附录内容 / Appendix content
+    }
+  } // 附录结束 / End of appendix part
 }

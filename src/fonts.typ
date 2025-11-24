@@ -20,7 +20,7 @@
     "Menlo",                    // Menlo
     "Consolas",                 // Consolas
 )
-#let cjk-title-family = (           // 标题字体 / Title font family
+#let cjk-art-family = (           // 标题字体 / Title font family
     "DuanNingMaoBiXiaoKai",     // 段宁毛笔小楷 / DuanNingMaoBiXiaoKai
 )
 #let latin-serif-family = (         // 拉丁衬线字体 / Latin serif font family
@@ -36,7 +36,7 @@
     "Consolas",                 // Consolas
     "Menlo",                    // Menlo
 )
-#let latin-title-family = (         // 拉丁标题字体 / Latin title font family
+#let latin-art-family = (         // 拉丁标题字体 / Latin title font family
     "",                         // 空字符串 / Empty string
 )
 
@@ -44,4 +44,4 @@
 #let serif-family = latin-serif-family + cjk-serif-family
 #let sans-family = latin-sans-family + cjk-sans-family
 #let mono-family = latin-mono-family + cjk-mono-family
-#let title-font = latin-title-family + cjk-title-family
+#let art-font = latin-art-family + cjk-art-family

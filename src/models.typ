@@ -111,7 +111,7 @@
 ) = {
   {
     set text(font: mono-family) // 设置目录字体 / Set contents font
-    if table-of-contents != none {
+    if table-of-contents != none { // 如果提供了目录，则显示目录 / If table of contents is provided, display it
       table-of-contents         // 显示目录 / Display table of contents
     }
   }

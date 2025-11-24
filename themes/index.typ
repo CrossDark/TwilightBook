@@ -6,7 +6,9 @@
 
     "cover-image", // 主题封面图片路径 / Theme cover image paths
     "preface-image", // 主题前言图片路径 / Theme preface image paths
-    "content-image" // 主题图片路径 / Theme image paths
+    "content-image", // 主题图片路径 / Theme image paths
+
+    "line-color", // 主题线条颜色 / Theme line color
 )
 
 #let settings_csv = csv("index.csv") // 读取主题设置表格 / Read theme setting table
@@ -29,7 +31,7 @@
 
   let setting_value = settings_csv.at(settings_dict.at(theme)).at(theme_heading.position(isSetting)) // 从`主题设置表头`中获取主题设置对应的索引值,并根据索引值从csv中选定主题的设置行中获取对应的值 / Get the index value corresponding to the theme setting from the `theme setting header`, and use the index value to get the corresponding value from the selected theme's setting row in the csv
 
-  if theme_heading.position(isSetting) in (1, 2, 3, 4) [ // 如果是颜色设置则返回rgb格式 / If it is a color setting, return in rgb format
+  if theme_heading.position(isSetting) in (1, 2, 3, 4, 8) [ // 如果是颜色设置则返回rgb格式 / If it is a color setting, return in rgb format
     #return rgb(setting_value)
   ] else [ // 否则直接返回设置值 / Otherwise, return the setting value directly
     #return setting_value
