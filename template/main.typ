@@ -1,15 +1,18 @@
-#import "@preview/twlight-book:0.0.1" : *
+#import "@preview/twlight-book:0.1.3" : *
 
-#show: twlight-book.with(
-  title: [TwlightBook],
-  author: "跨越晨昏",
-  preface: [
-    一个花卉主题模板
-    ],
-  date: datetime(year: 2025, month: 03, day: 17),
-  figure-index: (enabled: true),
-  table-index: (enabled: true),
-  listing-index: (enabled: true),
+#show: book.with(
+  title: [暮光之书],
+  theme: "abyss",
+  depth: 1,
+  wrapper: (heading, content) => {
+    heading
+    nest-block(depth: 2, content)
+  },
+  inset: 1em,
+  preface: "ewf",
+  date: datetime(year: 2025, month: 11, day: 25),
 )
 
 = 正文
+
+dfg

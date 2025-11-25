@@ -10,7 +10,13 @@
   },
   inset: 1em,
   preface: "ewf",
-  date: datetime(year: 2024, month: 02, day: 3)
+  date: datetime(year: 2024, month: 02, day: 3),
+  appendix: (
+    enabled: true,
+    title: "附录",
+    heading-numbering-format: "",
+    body: include "appendix.typ",
+  ),
 )
 
 

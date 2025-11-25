@@ -79,6 +79,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 新的book函数基本完成
 
+## [0.1.3] - 2025-11-23
+
+### 更改 Changed
+
+- 完善模板配置
+
 <!--
 以下是每个版本的目标URL：
 Below are the target URLs for each version
@@ -98,3 +104,4 @@ in comparison to the previous release
 [0.1.0]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.1.0
 [0.1.1]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.1.1
 [0.1.2]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.1.2
+[0.1.3]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.1.3

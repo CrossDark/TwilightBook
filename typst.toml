@@ -2,7 +2,7 @@
 
 [package]
 name = "twilight-book"
-version = "0.1.2"
+version = "0.1.3"
 entrypoint = "src/lib.typ"
 authors = ["跨越晨昏 <@CrossDark>"]
 license = "MIT"
@@ -26,7 +26,7 @@ exclude = [
 [template]
 path = "template"
 entrypoint = "main.typ"
-thumbnail = "main.webp"
+thumbnail = "template/thumbnail.png"
 
 # [tool.mytool]
 # foo = "bar"
