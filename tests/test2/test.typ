@@ -1,4 +1,4 @@
-#import "/src/book.typ" : *
+#import "/src/lib.typ" : *
 
 #show: book.with(
   title: [ergrthrthhrtrt],
@@ -17,6 +17,11 @@
     heading-numbering-format: "",
     body: include "appendix.typ",
   ),
+  bibliographys: bibliography("test.yml", title: "参考"),
+
+  figure-index: (enabled: true),
+  table-index: (enabled: true),
+  listing-index: (enabled: true),
 )
 
 
@@ -28,7 +33,7 @@ some
 text _and_ 
 more
 
-wef
+wefu户
 
 wef
 
@@ -40,7 +45,11 @@ stuffewf
 
 wgreergerg
 wgr外国人
-个二维公然侮辱个外国人
+
+@H50接口
+
+@MWDW-234BT
+
 个吻文哥给我
 
 efw

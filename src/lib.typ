@@ -3,6 +3,8 @@
 
 #import "../themes/index.typ" : * // 导入主题设置模块 / Import theme settings module
 
+#import "book.typ" : * // 导入主模块 / Import main module
+
 // 用于弥补缺少 `std` 作用域的工作区。
 // Workaround for missing `std` scope in workspace.
 #let std-bibliography = bibliography

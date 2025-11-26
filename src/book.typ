@@ -2,12 +2,18 @@
 
 #import "models.typ" : * // 导入模块 / Import models module
 
+// 用于弥补缺少 `std` 作用域的工作区。
+// Workaround for missing `std` scope in workspace.
+#let std-bibliography = bibliography
+#let std-smallcaps = smallcaps
+#let std-upper = upper
+
 // A utility function to check if an element is a heading / 判断元素是否为标题
 #let is-heading(it) = {
   it.func() == heading
 }
 
-// 主函数 / Wrapper function
+// 递归函数 / Wrapper function
 #let wrapp-section(
   body, // The body content / 主体内容
   depth: 1, // The heading depth to wrap / 要包装的标题深度
@@ -87,6 +93,19 @@
     title: "附录",
     body: (),
   ),
+  figure-index: ( // 显示图图像的索引 / Figure index settings
+    enabled: true,              // 是否启用 / Whether enabled
+    title: "",                  // 标题 / Title
+  ),
+  table-index: ( // 显示表格的索引 / Table index settings
+    enabled: true,              // 是否启用 / Whether enabled
+    title: "",                  // 标题 / Title
+  ),
+  listing-index: ( // 代码清单索引设置 / Listing index settings
+    enabled: true,              // 是否启用 / Whether enabled
+    title: "",                  // 标题 / Title
+  ),
+  bibliographys: none, // 参考文献 / Bibliography
 ) = {
   // Load theme settings / 加载主题设置
   let background-color = themes(theme: theme, setting: "background-color")
@@ -203,4 +222,53 @@
       appendix.body             // 附录内容 / Appendix content
     }
   } // 附录结束 / End of appendix part
+
+  { // 参考文献开始 / Bibliography part
+    if bibliographys != none {  // 如果有参考文献 / If bibliography exists
+      pagebreak()               // 分页 / Page break
+      set text(font: mono-family) // 设置附录字体 / Set appendix font
+      show std-bibliography: set text(0.85em, fill: text-color) // 设置参考文献文本样式 / Set bibliography text style
+      // 对参考文献使用默认段落属性。
+      // Use default paragraph properties for bibliography.
+      show std-bibliography: set par(leading: 0.65em, justify: false, linebreaks: auto) // 设置参考文献段落属性 / Set bibliography paragraph properties
+      bibliographys             // 显示参考文献 / Display bibliography
+    }
+  } // 参考文献结束 / End of bibliography part
+
+  { // 显示图、表和代码清单的索引开始 / Start of figure, table, and listing indexes
+    let fig-t(kind) = figure.where(kind: kind) // 根据类型获取图形 / Get figures by kind
+    let has-fig(kind) = counter(fig-t(kind)).get().at(0) > 0 // 检查是否有该类型图形 / Check if figures of kind exist
+    if figure-index.enabled or table-index.enabled or listing-index.enabled { // 如果启用任何索引 / If any index is enabled
+      show outline: set heading(outlined: true) // 设置大纲标题 / Set outline headings
+      context {
+        let imgs = figure-index.enabled and has-fig(image) // 是否有图片索引 / If figure index exists
+        let tbls = table-index.enabled and has-fig(table)  // 是否有表格索引 / If table index exists
+        let lsts = listing-index.enabled and has-fig(raw)  // 是否有代码索引 / If listing index exists
+        if imgs or tbls or lsts { // 如果有任何索引 / If any index exists
+          // 注意，我们只分页一次，而不是为每个单独的索引分页。这是因为对于只有少量图的文档，在每个索引处都开始新页会导致过多的空白。
+          // Note: we only page break once, not for each individual index. This is because for documents with only a few figures, starting a new page at each index would result in too much whitespace.
+          pagebreak()             // 分页 / Page break
+        }
+
+        if imgs {                 // 如果有图片索引 / If figure index exists
+          outline(
+            title: figure-index.at("title", default: "图表索引"), // 图表索引标题 / Figure index title
+            target: fig-t(image), // 目标为图片 / Target is images
+          )
+        }
+        if tbls {                 // 如果有表格索引 / If table index exists
+          outline(
+            title: table-index.at("title", default: "表格索引"), // 表格索引标题 / Table index title
+            target: fig-t(table), // 目标为表格 / Target is tables
+          )
+        }
+        if lsts {                 // 如果有代码索引 / If listing index exists
+          outline(
+            title: listing-index.at("title", default: "代码索引"), // 代码索引标题 / Listing index title
+            target: fig-t(raw),   // 目标为代码 / Target is code listings
+          )
+        }
+      }
+    }
+  }
 }
