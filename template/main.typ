@@ -1,4 +1,4 @@
-#import "@preview/twlight-book:0.1.3" : *
+#import "@preview/twilight-book:0.1.3" : *
 
 #show: book.with(
   title: [暮光之书],
@@ -9,7 +9,7 @@
     nest-block(depth: 2, content)
   },
   inset: 1em,
-  preface: "ewf",
+  preface: "一个多主题模板",
   date: datetime(year: 2025, month: 11, day: 25),
 )
 
