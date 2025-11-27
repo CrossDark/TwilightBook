@@ -174,7 +174,43 @@
 
   { // 正文开始 / Start of body part
     set page(
-      background: image(content-image, width: 100%, height: 100%)  // 背景图片 / Background image
+      background: image(content-image, width: 100%, height: 100%),  // 背景图片 / Background image
+      footer: context {           // 页脚上下文 / Footer context
+        // 获取当前页码。
+        // Get current page number.
+        let i = counter(page).at(here()).first()
+
+        // 获取总页码
+        // Get total page count
+        let total = counter(page).final().first()
+
+        // 居中对齐
+        // Center alignment
+        let is-odd = calc.odd(i)  // 判断是否为奇数页 / Check if odd page
+        let aln = center          // 对齐方式 / Alignment
+
+        // 我们是否在开始新章节的页面上？
+        // Are we on a page that starts a new chapter?
+        let target = heading.where(level: 1) // 一级标题 / Level 1 heading
+        if query(target).any(it => it.location().page() == i) {
+          return align(aln)[#i / #total]   // 返回页码 / Return page number
+        }
+
+        // 查找当前所在部分的章节。
+        // Find the chapter of the current section.
+        let before = query(target.before(here())) // 当前位置之前的标题 / Headings before current position
+        if before.len() > 0 {
+          let current = before.last() // 当前章节 / Current chapter
+          let gap = 1.75em           // 间距 / Gap
+          // 显示章节名称
+          // Display chapter name
+          let chapter = upper(text(size: 0.7em, fill: themes(theme: theme, setting: "text-color"), current.body)) // 章节名称大写 / Chapter name uppercase
+          if current.numbering != none {
+            align(aln)[#chapter]  // 对齐章节名称 / Align chapter name
+            align(aln)[#i / #total]     // 对齐页码 / Align page number
+          }
+        }
+      },
     )
 
     set heading(numbering: "1.", hanging-indent: hanging-indent) // 编号格式和悬挂缩进 / Numbering format and hanging indent
