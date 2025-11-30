@@ -1,6 +1,6 @@
 #import "/src/lib.typ" : *
 
-#show: twlight-book.with(
+#show: book.with(
   title: [高端深渊人产品手册],
   author: "深渊",
   preface: [
@@ -52,8 +52,6 @@ grt
 由于我位于*无背景辐射区*内,因此所有产品均不配备无线电收发能力,如有需要可以选配无线电扩展,详情请咨询代理商/俱乐部
 
 == 产品线
-
-#pagebreak()
 
 == 荣誉
 
@@ -130,67 +128,9 @@ grt
 
 负责提供持续的电力,使用$""^238"Pu"$燃料,可以持续供电>$10^(14)$s
 
-#let pin-corner(alignment) = {
-  place(alignment)[#metadata(none)<_pin_corner>]
-}
-// place a magic marker in the left + top and right + bottom corners, so we get
-// the bounds of the current cell
-#let pin-corners() = {
-  pin-corner(left + top)
-  pin-corner(right + bottom)
-}
-#let row(islast: false) = (
-  grid.cell(align: top + center, {
-    let pad = 0.7em
-    place(center, sym.bullet)
-    if not islast {
-      // find the size of the current cell!
-      // then extend a line of the right length..
-      // this is the usual super query pattern ^_^
-      context {
-        let pin-y = query(selector(<_pin_corner>)
-          .after(here())
-          .before(selector(<_cell_end>).after(here())))
-          .map(pin => pin.location().position().y)
-        let height = pin-y.at(1) - pin-y.at(0)
-        place(center, dy: pad, line(length: height, angle: 0deg))
-      }
-    }
-    pin-corners()
-    [#metadata(none)<_cell_end>]
-  }),
-  {
-    strong("HEAD")
-    "body"
-  },
-  align(top, []),
-)
-
-#grid(
-  //stroke: 0.2pt + blue,
-  inset: (left: 0mm, rest: 1mm),
-  columns: (auto, 1fr, auto),
-  column-gutter: 0.3em,
-  row-gutter: 0.1em,
-  ..(
-    box(height: 2.5em, width: 2.5em, inset: 1mm, circle(fill: black)),
-    [#strong[Heading] \ each Subheading],
-  ).map(
-    align.with(horizon),
-  ),
-  ..(row() * 2).flatten(),
-  ..row(islast: true)
-)
-
 === 不间断电力系统
 
 `50V 1A`
-
-#box(
-  height: 10em,
-  width: 20em,
-  "不间断电力系统示意图"
-)
 
 接收核燃料电池的电力,采用超导输电,负责向需要稳定的模块不间断供电,保证其稳定运行
 
@@ -586,7 +526,7 @@ grt
 
 === 提醒
 
-考虑到高端深渊人的价值,不建议您往死里折磨,如果有处刑的需要可以考虑量大管饱的#link("日用深渊人")
+考虑到高端深渊人的价值,不建议您往死里折磨,如果有处刑的需要可以考虑量大管饱的
 
 本型号反抗强度极高,购买前请确认自己的能力,否则主仆关系可能不会那么明确
 
@@ -678,7 +618,7 @@ grt
 
 通用型均为直销且没有批量优惠,所有其它销售渠道均为未经授权的转卖且没有价格优势和售后,因此十分不建议
 
-== 代理商/俱乐部 <代理商俱乐部>
+== 代理商/俱乐部
 
 #table(
   columns: (auto, auto),
