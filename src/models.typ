@@ -9,8 +9,8 @@
   let width = 6cm  // box size
   let size = 50pt  // maximum text size
 
-  while measure(text(size: size, weight: 700, body), width: width).height > height {
-    size -= 1pt
+  while measure(text(size: size, weight: 700, body), width: width).height > height { // Reduce text size until it fits within the box / 减小文字大小直到适应区域
+    size -= 1pt // Decrease text size / 减小文字大小
   }
   
   box(

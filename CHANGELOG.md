@@ -85,6 +85,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 完善模板配置
 
+## [0.1.4] - 2025-12-03
+
+### 更改 Changed
+
+- 修复了一大堆问题
+
 <!--
 以下是每个版本的目标URL：
 Below are the target URLs for each version
@@ -105,3 +111,4 @@ in comparison to the previous release
 [0.1.1]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.1.1
 [0.1.2]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.1.2
 [0.1.3]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.1.3
+[0.1.4]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.1.4
