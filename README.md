@@ -15,8 +15,9 @@ These instructions will get you a copy of the project up and running on the typs
 ```typ
 #import "@preview/twilight-book:0.1.4": *
 
-#show: flower-book.with()
-#my-func()
+#show: book.with()
+
+// 正文内容
 ```
 
 <!--
