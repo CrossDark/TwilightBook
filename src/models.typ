@@ -21,6 +21,14 @@
   )
 }
 
+#let set_background(background) = { // 设置背景函数 / Set background function
+  if background.starts-with("#") { // 是纯色RGB背景 / Is a solid RGB background
+    return rgb(background) // 返回颜色 / Return color
+  } else { // 是图片背景 / Is an image background
+    return image(background, width: 100%, height: 100%) // 返回图片 / Return image
+  }
+}
+
 
 #let setup-cover( // 封面设置函数 / Cover setup function
   title: [晨昏之书],
@@ -41,7 +49,7 @@
   let content-image = themes(theme: theme, setting: "content-image")
 
   page(
-    background: image(cover-image, width: 100%, height: 100%), // 背景图片 / Background image
+    background: set_background(cover-image), // 背景图片 / Background image
     align(
       center + horizon,       // 居中对齐 / Center alignment
       block(width: 90%)[      // 宽度90%的块 / Block with 90% width
@@ -90,13 +98,23 @@
   preface: none,
   theme: "abyss",
 ) = {
+
+  // Load theme settings / 加载主题设置
+  let background-color = themes(theme: theme, setting: "background-color")
+  let text-color = themes(theme: theme, setting: "text-color")
+  let stroke-color = themes(theme: theme, setting: "stroke-color")
+  let fill-color = themes(theme: theme, setting: "fill-color")
+  let cover-image = themes(theme: theme, setting: "cover-image")
+  let preface-image = themes(theme: theme, setting: "preface-image")
+  let content-image = themes(theme: theme, setting: "content-image")
+
   // 将前言显示为第二或三页。
   // Display preface as second or third page.
   {
     set text(font: mono-family) // 设置前言字体 / Set preface font
     if preface != none {
       page(
-        background: image(themes(theme: theme, setting: "preface-image"), width: 100%, height: 100%), // 背景图片 / Background image
+        background: set_background(preface-image), // 背景图片 / Background image
         align(
           center + horizon, // 居中对齐 / Center alignment
           block(width: 50%)[#preface] // 前言内容块 / Preface content block

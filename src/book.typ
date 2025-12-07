@@ -174,7 +174,7 @@
 
   { // 正文开始 / Start of body part
     set page(
-      background: image(content-image, width: 100%, height: 100%),  // 背景图片 / Background image
+      background: set_background(content-image),  // 背景图片 / Background image
       footer: context {           // 页脚上下文 / Footer context
         // 获取当前页码。
         // Get current page number.
