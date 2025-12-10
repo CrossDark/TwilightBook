@@ -23,9 +23,17 @@
 
 #let set_background(background) = { // 设置背景函数 / Set background function
   if background.starts-with("#") { // 是纯色RGB背景 / Is a solid RGB background
-    return rgb(background) // 返回颜色 / Return color
+    return none // 返回无背景 / Return no background
   } else { // 是图片背景 / Is an image background
     return image(background, width: 100%, height: 100%) // 返回图片 / Return image
+  }
+}
+
+#let set_fill(fill) = { // 设置背景函数 / Set background function
+  if fill.starts-with("#") { // 是纯色RGB背景 / Is a solid RGB background
+    return rgb(fill) // 返回颜色 / Return color
+  } else { // 是图片背景 / Is an image background
+    return auto // 返回自动填充 / Return auto fill
   }
 }
 

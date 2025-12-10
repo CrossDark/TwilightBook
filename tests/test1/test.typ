@@ -17,7 +17,7 @@
     body: include "appendix.typ",
   ),
   bibliographys: bibliography("test.yml", title: "参考"),
-  theme: "abyss",
+  theme: "CrossDark",
 )
 
 = 产品介绍
