@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [ ] 拆分主函数为一个主函数和许多小函数,小函数内放置各个部分/功能的具体实现代码,主函数内调用各个小函数并执行全局性代码
 - [ ] 完善测试流程
+- [ ] 完善文字大小和字间距设置
 
 ### 弃用 Deprecated
 

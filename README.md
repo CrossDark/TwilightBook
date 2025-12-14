@@ -15,7 +15,9 @@ These instructions will get you a copy of the project up and running on the typs
 ```typ
 #import "@preview/twilight-book:0.1.6": *
 
-#show: book.with()
+#show: book.with(
+  // 具体的各种设置 / Specific Settings
+)
 
 // 正文内容
 ```
@@ -40,6 +42,16 @@ git clone https://github.com/CrossDark/TwilightBook.git "$HOME/Library/Applicati
 ```
 
 #### Windows
+
+## 样式 Style
+
+以深渊主题为例
+
+### 封面 Cover
+
+![](thumbnail.png)
+
+
 
 <!--
 ## Usage 使用说明
