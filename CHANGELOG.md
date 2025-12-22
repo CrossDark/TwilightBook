@@ -26,7 +26,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [ ] 拆分主函数为一个主函数和许多小函数,小函数内放置各个部分/功能的具体实现代码,主函数内调用各个小函数并执行全局性代码
 - [ ] 完善测试流程
-- [ ] 完善文字大小和字间距设置
 
 ### 弃用 Deprecated
 
@@ -106,6 +105,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 完善了纯色背景
 
+## [0.1.7] - 2025-12-22
+
+### 更改 Changed
+
+- 完善文字大小和字间距设置
+- 完善README.md
+
 <!--
 以下是每个版本的目标URL：
 Below are the target URLs for each version
@@ -129,3 +135,4 @@ in comparison to the previous release
 [0.1.4]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.1.4
 [0.1.5]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.1.5
 [0.1.6]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.1.6
+[0.1.7]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.1.7

@@ -4,7 +4,7 @@
 
 // 用于弥补缺少 `std` 作用域的工作区。 TODO
 // Workaround for missing `std` scope in workspace.
-#let std-bibliography = bibliography
+#let std-bibliography = std.bibliography
 #let std-smallcaps = smallcaps
 #let std-upper = upper
 
@@ -87,7 +87,7 @@
   date-format: "[year repr:full]-[month padding:zero]-[day padding:zero]", // 日期格式 / Date format
   abstract: none, // 摘要 / Abstract
   preface: none, // 前言 / Foreword
-  table-of-contents: outline(title: "目录"), // 目录设置 / Table of contents settings
+  table-of-contents: outline(title: "目录"), // 目录设置,关闭则设置为none / Table of contents settings
   appendix: ( // 附录设置 / Appendix settings
     enabled: false,
     title: "附录",
