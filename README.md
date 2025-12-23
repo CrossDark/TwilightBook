@@ -63,14 +63,23 @@ Supports indenting content based on heading levels and adding reference lines.
 
 ![](main-text.png)
 
+### 字体 Fonts
 
+可以使用以下代码自定义字体
+
+```typ
+#let serif-family = {"字体名称"}
+#let sans-family = {"字体名称"}
+#let mono-family = {"字体名称"}
+#let art-font = {"字体名称"}
+```
 
 <!--
 ## Usage 使用说明
 
 A more in-depth description of usage. Any template arguments? A complicated example that showcases most if not all of the functions the package provides? This is also an excellent place to signpost the manual.
 
-更深入的使用说明。 包含复杂的示例，展示了软件包提供的大多数功能
+更深入的使用说明. 包含复杂的示例，展示了软件包提供的大多数功能
 
 ```typ
 #import "@preview/twilight-book:0.1.7": *
