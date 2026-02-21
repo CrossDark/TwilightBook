@@ -221,9 +221,21 @@
       x                           // 返回内容 / Return content
     }
 
-    // 显示粗体,上下划线,时设置无衬线字体 / Set sans-serif font when displaying strong text
-    show selector.or(strong, emph, underline, strike, overline): x => {
-      set text(font: sans-family) // 使用无衬线字体家族 / Use sans-serif font family
+    // 显示上下划线,时设置衬线字体 / Set serif font when displaying strong text
+    show selector.or(underline, strike, overline): x => {
+      set text(font: sans-family) // 使用无衬线字体家族 / Use serif font family
+      x                           // 返回内容 / Return content
+    }
+
+    // 显示粗体时设置粗体字体 / Set bold font when displaying strong text
+    show strong: x => {
+      set text(font: bold-family) // 使用粗体字体家族 / Use bold font family
+      x                           // 返回内容 / Return content
+    }
+
+    // 显示斜体时设置斜体字体 / Set italic font when displaying emphasized text
+    show emph: x => {
+      set text(font: italic-family) // 使用斜体字体家族 / Use italic font family
       x                           // 返回内容 / Return content
     }
 

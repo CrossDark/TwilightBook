@@ -1,6 +1,6 @@
 # The `TwilightBook` Package `晨昏之书`
 
-<div align="center">Version 0.1.7</div>
+<div align="center">Version 0.1.8</div>
 
 A twilight style template,offers numerous light and dark themes.
 
@@ -13,7 +13,7 @@ These instructions will get you a copy of the project up and running on the typs
 这些说明将为您提供在typst网络应用程序上启动和运行的项目副本。也许是导入软件包的简短代码示例和非常简单的预告使用。
 
 ```typ
-#import "@preview/twilight-book:0.1.77": *
+#import "@preview/twilight-book:0.1.8": *
 
 #show: book.with(
   // 具体的各种设置,详情请见book.typ / Specific Settings
@@ -42,7 +42,7 @@ A step by step guide that will tell you how to get the development environment u
 #### MacOS
 
 ```shell
-git clone https://github.com/CrossDark/TwilightBook.git "$HOME/Library/Application Support/typst/packages/local/twilight-book/0.1.7"
+git clone https://github.com/CrossDark/TwilightBook.git "$HOME/Library/Application Support/typst/packages/local/twilight-book/0.1.8"
 ```
 
 #### Windows
@@ -74,6 +74,8 @@ Supports indenting content based on heading levels and adding reference lines.
 #let art-font = {"字体名称"}
 ```
 
+[!warning](艺术字体中的*段宁毛笔小楷*为付费字体,商用请小心)
+
 <!--
 ## Usage 使用说明
 
@@ -82,7 +84,7 @@ A more in-depth description of usage. Any template arguments? A complicated exam
 更深入的使用说明. 包含复杂的示例，展示了软件包提供的大多数功能
 
 ```typ
-#import "@preview/twilight-book:0.1.7": *
+#import "@preview/twilight-book:0.1.8": *
 
 // #let my-complicated-example = ...
 ```

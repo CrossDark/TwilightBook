@@ -112,6 +112,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 完善文字大小和字间距设置
 - 完善README.md
 
+## [0.1.8] - 2025-12-22
+
+### 更改 Changed
+
+- 优化中文字体
+
 <!--
 以下是每个版本的目标URL：
 Below are the target URLs for each version
@@ -136,3 +142,4 @@ in comparison to the previous release
 [0.1.5]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.1.5
 [0.1.6]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.1.6
 [0.1.7]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.1.7
+[0.1.8]: https://github.com/CrossDark/TwilightBook/releases/tag/v0.1.8
